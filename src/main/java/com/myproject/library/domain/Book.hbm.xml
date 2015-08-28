@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.myproject.library.domain">
+    <class name="Book" table="book">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="native"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" length="64" not-null="true" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" not-null="true" />
+        </property>
+        <property name="author" type="java.lang.String">
+            <column name="author" length="32" not-null="true" />
+        </property>
+        <property name="borrowerId" type="java.lang.Long">
+            <column name="borrower_id" not-null="false" />
+        </property>
+        <property name="status" type="java.lang.Short">
+            <column name="status" not-null="true">
+            	<comment>0:在库	1:借出</comment>
+            </column>
+        </property>
+
+		<set name="borrowedRecordSet" table="borrowed_record" fetch="join" inverse="true">
+			<key column="book_id" not-null="true"></key>
+			<one-to-many class="BorrowedRecord" />
+		</set>
+        
+        <!-- 多对多 -->
+        <set name="borrowUserRecord" table="borrowed_record"  inverse="true" lazy="false">
+        	<!-- 连接表中指向book表的外键的字段名称 -->
+        	<key column="book_id"></key>
+        	<!-- 连接表中指向user表的外键的字段名称 -->
+        	<many-to-many column="user_id" class="User"></many-to-many>
+        </set>
+        
+        
+    </class>
+</hibernate-mapping>

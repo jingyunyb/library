@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="workflow" extends="struts-library">
+		
+		<!-- 用户列表页面 -->
+		<action name="listWorkflow" class="com.myproject.library.action.WorkflowAction" method="listWorkflow">
+			<result name="success">/WEB-INF/page/workflow/listWorkflow.jsp</result>
+		</action>
+		
+		<!-- 部署工作流 -->
+		<action name="deployWorkflowPro" class="com.myproject.library.action.WorkflowAction" method="deployWorkflowPro">
+			<result name="success" type="redirectAction">listWorkflow.action</result>
+		</action>
+
+		<!-- 删除工作流 -->
+		<action name="deleteWorkflowPro" class="com.myproject.library.action.WorkflowAction" method="deleteWorkflowPro">
+			<result name="success" type="redirectAction">listWorkflow.action</result>
+		</action>
+		
+		<!-- 启动续借图书工作流实例 -->
+		<action name="renewBookPro" class="com.myproject.library.action.WorkflowAction" method="renewBookPro">
+			<result name="success" type="redirectAction">myBorrowedBooks.action</result>
+		</action>
+		
+		<!-- 老师审批 -->
+		<action name="teacherApproval" class="com.myproject.library.action.WorkflowAction" method="teacherApproval">
+			<result name="success">/WEB-INF/page/workflow/teacherApproval.jsp</result>
+		</action>
+		
+		<!-- 批准借阅 -->
+		<action name="teacherApprovalTaskPro" class="com.myproject.library.action.WorkflowAction" method="approvalTaskPro">
+			<result name="success" type="redirectAction">teacherApproval.action</result>
+		</action>
+		
+		<!-- 管理员审批 -->
+		<action name="adminApproval" class="com.myproject.library.action.WorkflowAction" method="adminApproval">
+			<result name="success">/WEB-INF/page/workflow/adminApproval.jsp</result>
+		</action>
+		
+		<!-- 管理员批准借阅 -->
+		<action name="adminApprovalTaskPro" class="com.myproject.library.action.WorkflowAction" method="adminApprovalTaskPro">
+			<result name="success" type="redirectAction">adminApproval.action</result>
+		</action>
+		
+	</package>
+	
+	<package name="pool-json" extends="json-default">
+<!-- 		<action name="asynListHostByPoolId" class="com.chinac.chs.web.action.PoolAction" method="asynListHostByPoolId"> -->
+<!-- 			<result name="success" type="json"> -->
+<!-- 				<param name="root">asynJsonResult</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+	</package>
+</struts>

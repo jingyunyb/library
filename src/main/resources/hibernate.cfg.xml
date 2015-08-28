@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!--单次提交sql数目 -->
+		<property name="hibernate.jdbc.batch_size">50</property>
+		<property name="connection.autoReconnect">true</property>
+		<property name="connection.autoReconnectForPools">true</property>
+		<property name="connection.is-connection-validation-required">true</property>
+
+		<property name="hibernate.current_session_context_class">thread</property>
+
+
+		<mapping resource="com/myproject/library/domain/Book.hbm.xml" />
+		<mapping resource="com/myproject/library/domain/User.hbm.xml" />
+		<mapping resource="com/myproject/library/domain/BorrowedRecord.hbm.xml" />
+		<mapping resource="com/myproject/library/domain/Menu.hbm.xml" />
+		<mapping resource="com/myproject/library/domain/WebAction.hbm.xml" />
+		<mapping resource="com/myproject/library/domain/Role.hbm.xml" />
+
+	</session-factory>
+</hibernate-configuration>

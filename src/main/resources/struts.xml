@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 定义系统参数 -->
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect"
+		value="true" />
+	<constant name="struts.ui.theme" value="simple" />
+
+
+
+	<package namespace="/" name="struts-library" extends="struts-default">
+		<!-- 定义一个拦截器 -->
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.myproject.library.interceptor.LoginInterceptor">
+			</interceptor>
+			<interceptor name="menuInterceptor"
+				class="com.myproject.library.interceptor.MenuInterceptor">
+			</interceptor>
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="myInterceptorStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="menuInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- 定义默认拦截器 -->
+		<default-interceptor-ref name="myInterceptorStack" />
+		<!-- 定义全局Result -->
+		<global-results>
+			<!-- 当返回login视图名时，转入/login.jsp页面 -->
+			<result name="login" type="redirectAction">login.action</result>
+		</global-results>
+
+	</package>
+
+	<include file="struts-login.xml"></include>
+	<include file="struts-user.xml"></include>
+	<include file="struts-book.xml"></include>
+	<include file="struts-workflow.xml"></include>
+
+
+
+</struts>

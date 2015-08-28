@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.myproject.library.domain">
+    <class name="Menu" table="menu">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="native"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" length="64" not-null="true" />
+        </property>
+<!--         <property name="url" type="java.lang.String"> -->
+<!--             <column name="url" length="128" not-null="false" /> -->
+<!--         </property> -->
+        <property name="icon" type="java.lang.String">
+            <column name="icon" length="32" not-null="false" />
+        </property>
+        <property name="sort" type="java.lang.Integer">
+            <column name="sort" length="11" not-null="true"/>
+        </property>
+
+		<many-to-one name="webAction" class="com.myproject.library.domain.WebAction" fetch="join" cascade="save-update" >
+        	<column name="web_action_id" not-null="false"></column>
+        </many-to-one>    
+
+		<!-- column属性指定外键列名 -->
+        <many-to-one name="superMenu" class="com.myproject.library.domain.Menu" fetch="join" cascade="save-update" >
+        	<column name="super_id" not-null="false"></column>
+        </many-to-one>        
+
+		<set name="subMenuSet" table="menu" fetch="join" inverse="true" lazy="false">
+        	<key column="super_id" not-null="true"></key>
+        	<one-to-many class="Menu"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

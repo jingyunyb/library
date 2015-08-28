@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="user" extends="struts-library">
+		<!-- 新增用户页面 -->
+		<action name="addUser" class="com.myproject.library.action.UserAction" method="addUser">
+			<result name="success">/WEB-INF/page/user/addUser.jsp</result>
+		</action>
+		
+		<!-- 添加用户信息 -->
+		<action name="addUserPro" class="com.myproject.library.action.UserAction" method="addUserPro">
+			<result name="success" type="redirectAction">listUser.action</result>
+		</action>
+		
+		<!-- 修改用户页面 -->
+		<action name="updateUser" class="com.myproject.library.action.UserAction" method="updateUser">
+			<result name="success">/WEB-INF/page/user/updateUser.jsp</result>
+		</action>
+		
+		<!-- 修改用户信息 -->
+		<action name="updateUserPro" class="com.myproject.library.action.UserAction" method="updateUserPro">
+			<result name="success" type="redirectAction">listUser.action</result>
+		</action>
+		
+		<!-- 用户列表页面 -->
+		<action name="listUser" class="com.myproject.library.action.UserAction" method="listUser">
+			<result name="success">/WEB-INF/page/user/listUser.jsp</result>
+		</action>
+		
+		<!-- 删除用户 -->
+		<action name="deleteUserPro" class="com.myproject.library.action.UserAction" method="deleteUserPro">
+			<result name="success" type="redirectAction">listUser.action</result>
+		</action>
+		
+		<!-- 我借阅的图书 -->
+		<action name="myBorrowedBooks" class="com.myproject.library.action.UserAction" method="myBorrowedBooks">
+			<result name="success">/WEB-INF/page/user/myBorrowedBooks.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="pool-json" extends="json-default">
+<!-- 		<action name="asynListHostByPoolId" class="com.chinac.chs.web.action.PoolAction" method="asynListHostByPoolId"> -->
+<!-- 			<result name="success" type="json"> -->
+<!-- 				<param name="root">asynJsonResult</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+	</package>
+</struts>

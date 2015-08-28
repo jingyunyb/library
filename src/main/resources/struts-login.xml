@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package namespace="/" name="login" extends="struts-library" >
+		
+		<!-- 用户登录页面 -->
+		<action name="login" class="com.myproject.library.action.LoginAction" method="login">
+			<result name="success">/login.jsp</result>
+		</action>
+		
+		<action name="loginPro" class="com.myproject.library.action.LoginAction" method="loginPro">
+			<result name="success" type="redirectAction">listBook.action</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		
+		<action name="logoutPro" class="com.myproject.library.action.LoginAction" method="logoutPro">
+			<result name="success" type="redirectAction">login.action</result>
+		</action>
+		
+	</package>
+	
+	<package name="pool-json" extends="json-default">
+
+	</package>
+</struts>

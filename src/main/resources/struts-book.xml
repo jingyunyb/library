@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="book" extends="struts-library">
+		<!-- 新增图书页面 -->
+		<action name="addBook" class="com.myproject.library.action.BookAction" method="addBook">
+			<result name="success">/WEB-INF/page/book/addBook.jsp</result>
+		</action>
+		
+		<!-- 添加图书 -->
+		<action name="addBookPro" class="com.myproject.library.action.BookAction" method="addBookPro">
+			<result name="success" type="redirectAction">listBook.action</result>
+		</action>
+		
+		<!-- 修改图书信息 -->
+		<action name="updateBook" class="com.myproject.library.action.BookAction" method="updateBook">
+			<result name="success">/WEB-INF/page/book/updateBook.jsp</result>
+		</action>
+		
+		<!-- 修改图书页面 -->
+		<action name="updateBookPro" class="com.myproject.library.action.BookAction" method="updateBookPro">
+			<result name="success" type="redirectAction">listBook.action</result>
+		</action>
+		
+		<!-- 删除图书 -->
+		<action name="deleteBookPro" class="com.myproject.library.action.BookAction" method="deleteBookPro">
+			<result name="success" type="redirectAction">listBook.action</result>
+		</action>
+		
+		<!-- 图书列表页面 -->
+		<action name="listBook" class="com.myproject.library.action.BookAction" method="listBook">
+			<result name="success">/WEB-INF/page/book/listBook.jsp</result>
+		</action>
+		
+		<!-- 借阅图书 -->
+		<action name="borrowBookPro" class="com.myproject.library.action.BookAction" method="borrowBookPro">
+			<result name="success" type="redirectAction">listBook.action</result>
+		</action>
+		
+		<!-- 借阅记录 -->
+		<action name="listBorrowedRecord" class="com.myproject.library.action.BookAction" method="listBorrowedRecord">
+			<result name="success">/WEB-INF/page/book/listBorrowedRecord.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="pool-json" extends="json-default">
+<!-- 		<action name="asynListHostByPoolId" class="com.chinac.chs.web.action.PoolAction" method="asynListHostByPoolId"> -->
+<!-- 			<result name="success" type="json"> -->
+<!-- 				<param name="root">asynJsonResult</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+	</package>
+</struts>
