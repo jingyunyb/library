@@ -190,6 +190,8 @@
 
 		<!-- activiti工作流 END -->
 
+	<!-- hello world -->
+
 	</dependencies>
 	<build>
 		<finalName>library</finalName>
